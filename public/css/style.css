@@ -1,0 +1,53 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fdf2e9;
+    padding: 20px;
+}
+
+.container {
+    max-width: 450px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-top: 8px solid #d35400;
+}
+
+.header { text-align: center; margin-bottom: 25px; }
+h1 { color: #d35400; margin-bottom: 5px; }
+.subtitle { color: #7f8c8d; font-size: 0.9em; }
+
+.menu-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #fff9f4;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item input { margin-right: 15px; transform: scale(1.2); }
+.price { color: #27ae60; font-weight: bold; }
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+button {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-pesan { background: #e67e22; color: white; }
+.btn-bawa-pulang { background: #2c3e50; color: white; }
+
+button:active { transform: scale(0.95); }
+.footer { text-align: center; margin-top: 20px; font-size: 0.8em; color: #bdc3c7; }`
