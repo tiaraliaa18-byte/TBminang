@@ -39,45 +39,78 @@
         <p class="section-subtitle">Dipilih dengan cinta, disajikan dengan kebanggaan</p>
         
         <div class="menu-grid">
+
             <!-- Menu Card 1 -->
             <div class="menu-card">
-                <div class="popular-badge">⭐ Populer</div>
                 <div class="menu-image-wrapper">
                     <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800&auto=format&fit=crop" alt="Rendang Daging" class="menu-image-photo">
                 </div>
+
                 <div class="menu-info">
                     <h3 class="menu-name">Rendang Daging</h3>
                     <p class="menu-desc">Daging sapi empuk dimasak dengan bumbu rempah khas Minang selama berjam-jam</p>
                     <div class="menu-price">Rp 45.000</div>
-                    <button class="order-btn" onclick="orderWhatsapp('Rendang Daging', 45000)">Pesan Sekarang</button>
                 </div>
+
+                <article class="rm-card rm-menu-item">
+                        <div class="container">
+                            <div class="stepper-box">
+                            <button id="minus">-</button>
+                            <span id="count">0</span>
+                            <button id="plus">+</button>
+                        </div>
+
+                <button class="order-btn">Pesan Sekarang</button>
+                </article>
             </div>
 
             <!-- Menu Card 2 -->
             <div class="menu-card">
-                <div class="popular-badge">⭐ Populer</div>
                 <div class="menu-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?w=800&auto=format&fit=crop" alt="Gulai Ikan Kakap" class="menu-image-photo">
+                    <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800&auto=format&fit=crop" alt="Rendang Daging" class="menu-image-photo">
                 </div>
+
                 <div class="menu-info">
-                    <h3 class="menu-name">Gulai Ikan Kakap</h3>
-                    <p class="menu-desc">Ikan kakap segar dengan kuah gulai kuning yang gurih dan kaya rempah</p>
-                    <div class="menu-price">Rp 38.000</div>
-                    <button class="order-btn" onclick="orderWhatsapp('Gulai Ikan Kakap', 38000)">Pesan Sekarang</button>
+                    <h3 class="menu-name">Rendang Daging</h3>
+                    <p class="menu-desc">Daging sapi empuk dimasak dengan bumbu rempah khas Minang selama berjam-jam</p>
+                    <div class="menu-price">Rp 45.000</div>
                 </div>
+
+                <article class="rm-card rm-menu-item">
+                         <div class="container">
+                            <div class="stepper-box">
+                            <button id="minus">-</button>
+                            <span id="count">0</span>
+                            <button id="plus">+</button>
+                        </div>
+
+                <button class="order-btn">Pesan Sekarang</button>
+                </article>
             </div>
+
 
             <!-- Menu Card 3 -->
             <div class="menu-card">
                 <div class="menu-image-wrapper">
                     <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&auto=format&fit=crop" alt="Ayam Pop" class="menu-image-photo">
                 </div>
+
                 <div class="menu-info">
                     <h3 class="menu-name">Ayam Pop</h3>
                     <p class="menu-desc">Ayam goreng khas Padang yang renyah di luar, lembut di dalam dengan bumbu meresap</p>
                     <div class="menu-price">Rp 32.000</div>
-                    <button class="order-btn" onclick="orderWhatsapp('Ayam Pop', 32000)">Pesan Sekarang</button>
                 </div>
+
+                <article class="rm-card rm-menu-item">
+                         <div class="container">
+                            <div class="stepper-box">
+                            <button id="minus">-</button>
+                            <span id="count">0</span>
+                            <button id="plus">+</button>
+                        </div>
+
+                <button class="order-btn">Pesan Sekarang</button>
+                    </article>
             </div>
 
             <!-- Menu Card 4 -->
@@ -85,12 +118,23 @@
                 <div class="menu-image-wrapper">
                     <img src="https://images.unsplash.com/photo-1645696329716-039c8e6a0c05?w=800&auto=format&fit=crop" alt="Gulai Tunjang" class="menu-image-photo">
                 </div>
+
                 <div class="menu-info">
                     <h3 class="menu-name">Gulai Tunjang</h3>
                     <p class="menu-desc">Kikil sapi yang empuk dengan kuah gulai kental penuh rempah autentik</p>
                     <div class="menu-price">Rp 35.000</div>
-                    <button class="order-btn" onclick="orderWhatsapp('Gulai Tunjang', 35000)">Pesan Sekarang</button>
                 </div>
+
+                <article class="rm-card rm-menu-item">
+                         <div class="container">
+                            <div class="stepper-box">
+                            <button id="minus">-</button>
+                            <span id="count">0</span>
+                            <button id="plus">+</button>
+                        </div>
+
+                <button class="order-btn">Pesan Sekarang</button>
+                </article>
             </div>
 
             <!-- Menu Card 5 -->
@@ -98,12 +142,23 @@
                 <div class="menu-image-wrapper">
                     <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&auto=format&fit=crop" alt="Sayur Nangka" class="menu-image-photo">
                 </div>
+
                 <div class="menu-info">
                     <h3 class="menu-name">Sayur Nangka</h3>
                     <p class="menu-desc">Nangka muda dimasak dengan santan dan bumbu khas yang menggugah selera</p>
                     <div class="menu-price">Rp 25.000</div>
-                    <button class="order-btn" onclick="orderWhatsapp('Sayur Nangka', 25000)">Pesan Sekarang</button>
                 </div>
+
+                <article class="rm-card rm-menu-item">
+                         <div class="container">
+                            <div class="stepper-box">
+                            <button id="minus">-</button>
+                            <span id="count">0</span>
+                            <button id="plus">+</button>
+                        </div>
+
+                <button class="order-btn">Pesan Sekarang</button>
+                </article>
             </div>
 
             <!-- Menu Card 6 -->
@@ -115,8 +170,18 @@
                     <h3 class="menu-name">Telur Balado</h3>
                     <p class="menu-desc">Telur rebus digoreng dan disiram sambal balado pedas yang khas</p>
                     <div class="menu-price">Rp 15.000</div>
-                    <button class="order-btn" onclick="orderWhatsapp('Telur Balado', 15000)">Pesan Sekarang</button>
                 </div>
+
+                <article class="rm-card rm-menu-item">
+                         <div class="container">
+                            <div class="stepper-box">
+                            <button id="minus">-</button>
+                            <span id="count">0</span>
+                            <button id="plus">+</button>
+                        </div>
+
+                <button class="order-btn">Pesan Sekarang</button>
+                </article>
             </div>
         </div>
     </section>
@@ -133,17 +198,7 @@
                     <a href="#" class="social-link" aria-label="Twitter">🐦</a>
                 </div>
             </div>
-            
-            <div class="footer-section">
-                <h3>Menu Unggulan</h3>
-                <ul>
-                    <li>🍛 Rendang Daging</li>
-                    <li>🐟 Gulai Ikan</li>
-                    <li>🍗 Ayam Pop</li>
-                    <li>🥘 Gulai Tunjang</li>
-                    <li>🌶️ Sambal Balado</li>
-                </ul>
-            </div>
+
             
             <div class="footer-section">
                 <h3>Kontak Kami</h3>

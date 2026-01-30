@@ -1,4 +1,4 @@
-:root {
+ :root {
     --primary: #C41E3A;
     --primary-dark: #8B0000;
     --secondary: #FFD700;
@@ -306,37 +306,102 @@ nav {
     letter-spacing: -0.5px;
 }
 
-.order-btn {
+/* Order Controls & Container */
+.rm-card {
     width: 100%;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    color: white;
-    padding: 1rem;
-    border: none;
-    border-radius: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,248,230,0.98));
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.rm-menu-image {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.rm-menu-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-weight: 600;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+}
+
+.stepper-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,248,230,0.95));
+    padding: 0.35rem 0.6rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 6px 18px rgba(196,30,58,0.08);
+}
+
+.stepper-box button {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-grid;
+    place-items: center;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.stepper-box button:hover { 
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(196,30,58,0.18);
+}
+
+.stepper-box #count {
+    min-width: 34px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.order-btn {
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(255,107,53,0.12);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .order-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-    background: linear-gradient(135deg, #128C7E, #25D366);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(255,107,53,0.18);
 }
 
-.order-btn:active {
-    transform: translateY(0);
-}
-
-.order-btn::before {
-    content: '📱';
-    font-size: 1.2rem;
+@media (max-width: 480px) {
+    .rm-card { 
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .container { margin-left: 0; margin-top: 0.6rem; }
 }
 
 /* Popular Badge */
@@ -527,4 +592,4 @@ footer {
     .footer-content {
         grid-template-columns: 1fr;
     }
-}
+} 
