@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,9 +12,9 @@ use App\Http\Controllers\ProfileController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('user');
-});
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/menu', [FoodController::class, 'menu'])->name('foods.menu');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,6 +36,9 @@ Route::middleware(['auth'])->group(function () {
 
         return "<h1>Dashboard Admin 🔥</h1><a href='/'>Kembali</a>";
     });
+
+    // Food Management Routes
+    Route::resource('foods', FoodController::class);
 
 });
 

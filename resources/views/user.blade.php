@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    <meta name="csrf-token" content="{{ csrf_token() }}"
     <!-- Header -->
     <header>
       <nav>
@@ -39,152 +40,77 @@
         <p class="section-subtitle">Dipilih dengan cinta, disajikan dengan kebanggaan</p>
         
         <div class="menu-grid">
+            @forelse($foods as $food)
+                <div class="menu-card">
+                    <div class="menu-image-wrapper">
+                        @if($food->image)
+                            <img src="{{ asset('storage/' . $food->image) }}" alt="{{ $food->name }}" class="menu-image-photo">
+                        @else
+                            <div style="width: 100%; height: 200px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+                                <span style="color: #999;">Tidak ada gambar</span>
+                            </div>
+                        @endif
+                    </div>
 
-            <!-- Menu Card 1 -->
-            <div class="menu-card">
-                <div class="menu-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800&auto=format&fit=crop" alt="Rendang Daging" class="menu-image-photo">
-                </div>
+                    <div class="menu-info">
+                        <h3 class="menu-name">{{ $food->name }}</h3>
+                        <p class="menu-desc">{{ Str::limit($food->description ?? 'Makanan lezat khas Padang', 80) }}</p>
+                        <div class="menu-price">Rp {{ number_format($food->price, 0, ',', '.') }}</div>
+                    </div>
 
-                <div class="menu-info">
-                    <h3 class="menu-name">Rendang Daging</h3>
-                    <p class="menu-desc">Daging sapi empuk dimasak dengan bumbu rempah khas Minang selama berjam-jam</p>
-                    <div class="menu-price">Rp 45.000</div>
-                </div>
-
-                <article class="rm-card rm-menu-item">
+                    <article class="rm-card rm-menu-item">
                         <div class="container">
                             <div class="stepper-box">
-                            <button id="minus">-</button>
-                            <span id="count">0</span>
-                            <button id="plus">+</button>
+                                <button type="button" class="qty-btn minus-btn" data-food-id="{{ $food->id }}">-</button>
+                                <span class="qty-count" data-food-id="{{ $food->id }}">0</span>
+                                <button type="button" class="qty-btn plus-btn" data-food-id="{{ $food->id }}">+</button>
+                            </div>
                         </div>
 
-                <button class="order-btn">Pesan Sekarang</button>
-                </article>
-            </div>
-
-            <!-- Menu Card 2 -->
-            <div class="menu-card">
-                <div class="menu-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800&auto=format&fit=crop" alt="Rendang Daging" class="menu-image-photo">
-                </div>
-
-                <div class="menu-info">
-                    <h3 class="menu-name">Rendang Daging</h3>
-                    <p class="menu-desc">Daging sapi empuk dimasak dengan bumbu rempah khas Minang selama berjam-jam</p>
-                    <div class="menu-price">Rp 45.000</div>
-                </div>
-
-                <article class="rm-card rm-menu-item">
-                         <div class="container">
-                            <div class="stepper-box">
-                            <button id="minus">-</button>
-                            <span id="count">0</span>
-                            <button id="plus">+</button>
-                        </div>
-
-                <button class="order-btn">Pesan Sekarang</button>
-                </article>
-            </div>
-
-
-            <!-- Menu Card 3 -->
-            <div class="menu-card">
-                <div class="menu-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&auto=format&fit=crop" alt="Ayam Pop" class="menu-image-photo">
-                </div>
-
-                <div class="menu-info">
-                    <h3 class="menu-name">Ayam Pop</h3>
-                    <p class="menu-desc">Ayam goreng khas Padang yang renyah di luar, lembut di dalam dengan bumbu meresap</p>
-                    <div class="menu-price">Rp 32.000</div>
-                </div>
-
-                <article class="rm-card rm-menu-item">
-                         <div class="container">
-                            <div class="stepper-box">
-                            <button id="minus">-</button>
-                            <span id="count">0</span>
-                            <button id="plus">+</button>
-                        </div>
-
-                <button class="order-btn">Pesan Sekarang</button>
+                        <button type="button" class="order-btn" onclick="addToCart({{ $food->id }}, '{{ addslashes($food->name) }}', {{ $food->price }})">Pesan Sekarang</button>
                     </article>
-            </div>
-
-            <!-- Menu Card 4 -->
-            <div class="menu-card">
-                <div class="menu-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1645696329716-039c8e6a0c05?w=800&auto=format&fit=crop" alt="Gulai Tunjang" class="menu-image-photo">
                 </div>
-
-                <div class="menu-info">
-                    <h3 class="menu-name">Gulai Tunjang</h3>
-                    <p class="menu-desc">Kikil sapi yang empuk dengan kuah gulai kental penuh rempah autentik</p>
-                    <div class="menu-price">Rp 35.000</div>
+            @empty
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                    <p style="color: #999; font-size: 16px;">Belum ada menu tersedia</p>
                 </div>
-
-                <article class="rm-card rm-menu-item">
-                         <div class="container">
-                            <div class="stepper-box">
-                            <button id="minus">-</button>
-                            <span id="count">0</span>
-                            <button id="plus">+</button>
-                        </div>
-
-                <button class="order-btn">Pesan Sekarang</button>
-                </article>
-            </div>
-
-            <!-- Menu Card 5 -->
-            <div class="menu-card">
-                <div class="menu-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&auto=format&fit=crop" alt="Sayur Nangka" class="menu-image-photo">
-                </div>
-
-                <div class="menu-info">
-                    <h3 class="menu-name">Sayur Nangka</h3>
-                    <p class="menu-desc">Nangka muda dimasak dengan santan dan bumbu khas yang menggugah selera</p>
-                    <div class="menu-price">Rp 25.000</div>
-                </div>
-
-                <article class="rm-card rm-menu-item">
-                         <div class="container">
-                            <div class="stepper-box">
-                            <button id="minus">-</button>
-                            <span id="count">0</span>
-                            <button id="plus">+</button>
-                        </div>
-
-                <button class="order-btn">Pesan Sekarang</button>
-                </article>
-            </div>
-
-            <!-- Menu Card 6 -->
-            <div class="menu-card">
-                <div class="menu-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1632621849521-3cea83f6e9e4?w=800&auto=format&fit=crop" alt="Telur Balado" class="menu-image-photo">
-                </div>
-                <div class="menu-info">
-                    <h3 class="menu-name">Telur Balado</h3>
-                    <p class="menu-desc">Telur rebus digoreng dan disiram sambal balado pedas yang khas</p>
-                    <div class="menu-price">Rp 15.000</div>
-                </div>
-
-                <article class="rm-card rm-menu-item">
-                         <div class="container">
-                            <div class="stepper-box">
-                            <button id="minus">-</button>
-                            <span id="count">0</span>
-                            <button id="plus">+</button>
-                        </div>
-
-                <button class="order-btn">Pesan Sekarang</button>
-                </article>
-            </div>
+            @endforelse
         </div>
     </section>
+
+    <!-- Modal Pemesanan -->
+    <div id="orderModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">🛒 Keranjang Belanja</h2>
+                <button type="button" class="modal-close" onclick="closeOrderModal()">&times;</button>
+            </div>
+
+            <div id="cartItemsContainer" class="cart-items-container">
+                <p style="text-align: center; color: #999; padding: 20px;">Keranjang kosong. Pilih makanan untuk memulai pesanan!</p>
+            </div>
+
+            <div class="modal-summary">
+                <div class="summary-row">
+                    <strong>Total Harga:</strong> 
+                    <strong style="color: var(--primary); font-size: 1.2rem;">Rp <span id="totalPrice">0</span></strong>
+                </div>
+            </div>
+
+            <p class="modal-subtitle">Pilih metode pengiriman:</p>
+
+            <div class="modal-buttons">
+                <button type="button" class="modal-btn delivery-btn" onclick="processOrder('delivery')">
+                    <span>🚗</span> Delivery
+                </button>
+                <button type="button" class="modal-btn dine-in-btn" onclick="processOrder('dine-in')">
+                    <span>🍽️</span> Dine-In
+                </button>
+            </div>
+
+            <button type="button" class="modal-btn cancel-btn" onclick="closeOrderModal()">Batal</button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -205,7 +131,7 @@
                 <ul>
                     <li>📍 Jl. Raya Padang No. 123</li>
                     <li>📞 <a href="tel:+6281234567890">+62 812-3456-7890</a></li>
-                    <li>✉️ <a href="/cdn-cgi/l/email-protection#721b1c141d32001f1f1b1c131c155c111d1f"><span class="__cf_email__" data-cfemail="7c15121a133c0e111115121d121b521f1311">[email&#160;protected]</span></a></li>
+                    <li>✉️ <a href="mailto:info@rumahmakanminang.com">info@rumahmakanminang.com</a></li>
                     <li>🕐 Buka: 08.00 - 22.00 WIB</li>
                 </ul>
             </div>
@@ -214,4 +140,166 @@
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2026 Rumah Makan Minang. Dibuat dengan cito raso kito
+            <p>&copy; 2026 Rumah Makan Minang. Dibuat dengan ❤️ untuk pecinta kuliner</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart system
+        let cart = {};
+
+        function addToCart(foodId, foodName, foodPrice) {
+            const qty = parseInt(document.querySelector(`.qty-count[data-food-id="${foodId}"]`).textContent) || 1;
+            
+            if (qty === 0) {
+                alert('⚠️ Silakan pilih jumlah makanan terlebih dahulu!');
+                return;
+            }
+
+            if (cart[foodId]) {
+                cart[foodId].quantity += qty;
+            } else {
+                cart[foodId] = {
+                    name: foodName,
+                    price: foodPrice,
+                    quantity: qty
+                };
+            }
+
+            // Reset counter
+            document.querySelector(`.qty-count[data-food-id="${foodId}"]`).textContent = '0';
+
+            // Update cart display
+            updateCartDisplay();
+            openOrderModal();
+        }
+
+        function removeFromCart(foodId) {
+            delete cart[foodId];
+            updateCartDisplay();
+        }
+
+        function updateCartItemQty(foodId, change) {
+            if (cart[foodId]) {
+                cart[foodId].quantity += change;
+                if (cart[foodId].quantity <= 0) {
+                    removeFromCart(foodId);
+                } else {
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        function updateCartDisplay() {
+            const container = document.getElementById('cartItemsContainer');
+            const cartItems = Object.entries(cart);
+
+            if (cartItems.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">Keranjang kosong. Pilih makanan untuk memulai pesanan!</p>';
+                document.getElementById('totalPrice').textContent = '0';
+                return;
+            }
+
+            let html = '';
+            let totalPrice = 0;
+
+            cartItems.forEach(([foodId, item]) => {
+                const itemTotal = item.price * item.quantity;
+                totalPrice += itemTotal;
+
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-qty">
+                            <button onclick="updateCartItemQty(${foodId}, -1)">-</button>
+                            <span>${item.quantity}x</span>
+                            <button onclick="updateCartItemQty(${foodId}, 1)">+</button>
+                        </div>
+                        <div class="cart-item-price">Rp ${itemTotal.toLocaleString('id-ID')}</div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${foodId})">Hapus</button>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            document.getElementById('totalPrice').textContent = totalPrice.toLocaleString('id-ID');
+        }
+
+        function openOrderModal() {
+            document.getElementById('orderModal').classList.remove('hidden');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.add('hidden');
+        }
+
+        function processOrder(method) {
+            const cartItems = Object.entries(cart);
+            
+            if (cartItems.length === 0) {
+                alert('⚠️ Keranjang belanja kosong!');
+                return;
+            }
+
+            const methodText = method === 'delivery' ? 'Delivery 🚗' : 'Dine-In 🍽️';
+            let message = `Halo Rumah Makan Minang! 👋\n\nSaya ingin memesan:\n\n`;
+            let totalPrice = 0;
+
+            cartItems.forEach(([foodId, item]) => {
+                const itemTotal = item.price * item.quantity;
+                totalPrice += itemTotal;
+                message += `🍛 ${item.name}\n`;
+                message += `   Qty: ${item.quantity}x @ Rp ${item.price.toLocaleString('id-ID')}\n`;
+                message += `   Subtotal: Rp ${itemTotal.toLocaleString('id-ID')}\n\n`;
+            });
+
+            message += `────────────────────\n`;
+            message += `💰 TOTAL: Rp ${totalPrice.toLocaleString('id-ID')}\n`;
+            message += `🚗 Metode: ${methodText}\n\n`;
+            message += `Terima kasih telah memesan! 😊\nTunggu konfirmasi dari kami.`;
+            
+            // Nomor WhatsApp
+            const phoneNumber = '62882015476619';
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+            
+            // Clear cart setelah order
+            setTimeout(() => {
+                cart = {};
+                updateCartDisplay();
+                closeOrderModal();
+            }, 500);
+        }
+
+        // Tutup modal jika klik di luar
+        document.getElementById('orderModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeOrderModal();
+            }
+        });
+
+        // Quantity button handlers
+        document.querySelectorAll('.plus-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const foodId = this.dataset.foodId;
+                const countEl = document.querySelector(`.qty-count[data-food-id="${foodId}"]`);
+                let count = parseInt(countEl.textContent) || 0;
+                countEl.textContent = count + 1;
+            });
+        });
+
+        document.querySelectorAll('.minus-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const foodId = this.dataset.foodId;
+                const countEl = document.querySelector(`.qty-count[data-food-id="${foodId}"]`);
+                let count = parseInt(countEl.textContent) || 0;
+                if (count > 0) {
+                    countEl.textContent = count - 1;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
