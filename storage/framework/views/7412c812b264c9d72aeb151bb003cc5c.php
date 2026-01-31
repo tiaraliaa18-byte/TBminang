@@ -12,16 +12,16 @@
     .googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/style.css')); ?>">
 </head>
 
 <body>
-    <meta name="csrf-token" content="{{ csrf_token() }}"
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>"
     <!-- Header -->
     <header>
       <nav>
         <div class="logo">🍛 Rumah Makan Minang</div>
-        <a href="{{ route('login') }}" class="admin-btn">Admin</a>
+        <a href="<?php echo e(route('login')); ?>" class="admin-btn">Admin</a>
       </nav>
     </header>
 
@@ -41,41 +41,41 @@
         <p class="section-subtitle">Dipilih dengan cinta, disajikan dengan kebanggaan</p>
         
         <div class="menu-grid">
-            @forelse($foods as $food)
+            <?php $__empty_1 = true; $__currentLoopData = $foods; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $food): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="menu-card">
                     <div class="menu-image-wrapper">
-                        @if($food->image)
-                            <img src="{{ asset('storage/' . $food->image) }}" alt="{{ $food->name }}" class="menu-image-photo">
-                        @else
+                        <?php if($food->image): ?>
+                            <img src="<?php echo e(asset('storage/' . $food->image)); ?>" alt="<?php echo e($food->name); ?>" class="menu-image-photo">
+                        <?php else: ?>
                             <div style="width: 100%; height: 200px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
                                 <span style="color: #999;">Tidak ada gambar</span>
                             </div>
-                        @endif
+                        <?php endif; ?>
                     </div>
 
                     <div class="menu-info">
-                        <h3 class="menu-name">{{ $food->name }}</h3>
-                        <p class="menu-desc">{{ Str::limit($food->description ?? 'Makanan lezat khas Padang', 80) }}</p>
-                        <div class="menu-price">Rp {{ number_format($food->price, 0, ',', '.') }}</div>
+                        <h3 class="menu-name"><?php echo e($food->name); ?></h3>
+                        <p class="menu-desc"><?php echo e(Str::limit($food->description ?? 'Makanan lezat khas Padang', 80)); ?></p>
+                        <div class="menu-price">Rp <?php echo e(number_format($food->price, 0, ',', '.')); ?></div>
                     </div>
 
                     <article class="rm-card rm-menu-item">
                         <div class="container">
                             <div class="stepper-box">
-                                <button type="button" class="qty-btn minus-btn" data-food-id="{{ $food->id }}">-</button>
-                                <span class="qty-count" data-food-id="{{ $food->id }}">0</span>
-                                <button type="button" class="qty-btn plus-btn" data-food-id="{{ $food->id }}">+</button>
+                                <button type="button" class="qty-btn minus-btn" data-food-id="<?php echo e($food->id); ?>">-</button>
+                                <span class="qty-count" data-food-id="<?php echo e($food->id); ?>">0</span>
+                                <button type="button" class="qty-btn plus-btn" data-food-id="<?php echo e($food->id); ?>">+</button>
                             </div>
                         </div>
 
-                        <button type="button" class="order-btn" onclick="addToCart({{ $food->id }}, '{{ addslashes($food->name) }}', {{ $food->price }})">Pesan Sekarang</button>
+                        <button type="button" class="order-btn" onclick="addToCart(<?php echo e($food->id); ?>, '<?php echo e(addslashes($food->name)); ?>', <?php echo e($food->price); ?>)">Pesan Sekarang</button>
                     </article>
                 </div>
-            @empty
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                 <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
                     <p style="color: #999; font-size: 16px;">Belum ada menu tersedia</p>
                 </div>
-            @endforelse
+            <?php endif; ?>
         </div>
     </section>
 
@@ -137,7 +137,7 @@
                 </ul>
             </div>
             
-            <script src="{{ asset('js/script.js') }}"></script>
+            <script src="<?php echo e(asset('js/script.js')); ?>"></script>
         </div>
         
         <div class="footer-bottom">
@@ -303,4 +303,4 @@
         });
     </script>
 </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\tb\TBminang\resources\views/user.blade.php ENDPATH**/ ?>

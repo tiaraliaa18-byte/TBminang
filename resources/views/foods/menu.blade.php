@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@if ($food->image)
+    <img src="{{ asset('storage/' . $food->image) }}" alt="{{ $food->name }}" class="w-full h-48 object-cover">
+@else
+    <img src="https://via.placeholder.com/400x200?text=Rumah+Makan+Minang" alt="No Image" class="w-full h-48 object-cover">
+@endif
+
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold text-gray-800 mb-8">Menu Makanan</h1>
